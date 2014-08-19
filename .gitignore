@@ -2,6 +2,7 @@
 *.gradle/
 **build/
 **target/
+**classes/
 /out/
 *.log
 *.iws
