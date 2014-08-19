@@ -1,0 +1,15 @@
+**.gradle/1.*/
+*.gradle/
+**build/
+**target/
+/out/
+*.log
+*.iws
+*.iml
+*.ipr
+*.DS_Store
+*.idea
+**.classpath
+**.project
+**.settings
+*.h2.db

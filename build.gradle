@@ -1,0 +1,63 @@
+buildscript {
+    ext {
+        springVersion = '1.1.3.RELEASE'
+        jacksonVersion = "2.4.0"
+        hibernateValidatorVersion = "5.0.3.Final"
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springVersion}")
+    }
+}
+
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+group = 'no.ciber'
+version = '1.0.0-SNAPSHOT'
+jar.baseName = "cibrary"
+
+compileJava {
+    sourceCompatibility = '1.7'
+    targetCompatibility = '1.7'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    compile("com.fasterxml.jackson.core:jackson-databind")
+
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.hibernate:hibernate-validator")
+
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile('joda-time:joda-time')
+    compile('com.google.guava:guava:17.0')
+    compile('postgresql:postgresql:9.1-901-1.jdbc4')
+
+    testCompile('junit:junit')
+    testCompile("com.h2database:h2")
+
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+}
+
+task stage(dependsOn: ['build'])
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.12'
+}
