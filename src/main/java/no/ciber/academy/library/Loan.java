@@ -10,7 +10,7 @@ public class Loan {
     private long Id;
 
     private BookLoaner bookLoaner;
-    private Book book;
+    private Book bookInstance;
     private LocalDateTime timeOfCheckout;
     private LocalDateTime timeOfCheckin;
 
