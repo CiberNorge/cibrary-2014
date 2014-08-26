@@ -8,6 +8,7 @@ import no.ciber.academy.repository.LoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,7 +25,7 @@ public class LoanController {
     @Autowired
     BookRepository bookRepository;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/loanBook/{id}")
+    @RequestMapping(method = RequestMethod.POST, value = "/loanBook/{id}")
      public String loanBook(@PathVariable String id, RedirectAttributes redirect) {
         List <Loan> loans = loanRepository.findAll();
         Book book = bookRepository.findOne(id);
@@ -41,6 +42,7 @@ public class LoanController {
                 return "redirect:/";
             }
         }
+        System.out.println("Test");
         loanRepository.save(new Loan(book));
         redirect.addFlashAttribute("globalMessage", String.format("A loan of '%s' is now registered on you", book.getTitle()));
         return "redirect:/";
