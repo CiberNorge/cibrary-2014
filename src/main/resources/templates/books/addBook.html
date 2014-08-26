@@ -23,7 +23,8 @@
             <br/>
 
             <div th:each="category : ${categoryList}">
-                <input type="checkbox" th:value="${category.name}"/><span th:text="${category.name}"/>
+                <input type="checkbox" th:field="*{categories}"
+                       th:value="${category.name}"/><span th:text="${category.name}"/>
                 <br/>
             </div>
 

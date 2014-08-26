@@ -1,6 +1,8 @@
 package no.ciber.academy.model;
 
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -13,6 +15,7 @@ import java.util.List;
 public class Book implements Serializable {
 
     @Id
+    @NotEmpty
     private String isbn;
 
     private String title, description, pictureAddress, webLink, auther;
