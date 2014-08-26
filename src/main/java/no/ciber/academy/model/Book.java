@@ -15,10 +15,7 @@ public class Book implements Serializable {
     @Id
     private String isbn;
 
-    private String title, description, pictureAddress, webLink;
-
-    @ElementCollection
-    private List<String> auther;
+    private String title, description, pictureAddress, webLink, auther;
 
     private int publicationYear, numberOfCopies;
 
@@ -31,7 +28,7 @@ public class Book implements Serializable {
     }
 
     public Book(String isbn, String title, String description, String pictureAddress, String webLink,
-                List<String> auther, int publicationYear, int numberOfCopies, List<Category> categories) {
+                String auther, int publicationYear, int numberOfCopies, List<Category> categories) {
         this.isbn = isbn;
         this.title = title;
         this.description = description;
@@ -83,11 +80,11 @@ public class Book implements Serializable {
         this.webLink = webLink;
     }
 
-    public List<String> getAuther() {
+    public String getAuther() {
         return auther;
     }
 
-    public void setAuther(List<String> auther) {
+    public void setAuther(String auther) {
         this.auther = auther;
     }
 
