@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<body>
+<h3>Test</h3>
+
+    <form id="addBookForm" th:action="@{/book/add}" th:object="${book}" action="#"
+            method="post" role="form" class="form-horisontal">
+        <div>
+            <label for="isbn">ISBN</label>
+            <input type="text" th:field="*{isbn}"/>
+        </div>
+        <input type="submit" name="save"/>
+    </form>
+</body>
+</html>
