@@ -1,15 +1,42 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <body>
 <h3>Test</h3>
 
-    <form id="addBookForm" th:action="@{/book/add}" th:object="${book}" action="#"
+    <form id="addBookForm" th:action="@{/books/add}" th:object="${book}" action="#"
             method="post" role="form" class="form-horisontal">
         <div>
             <label for="isbn">ISBN</label>
             <input type="text" th:field="*{isbn}"/>
+            <br/>
+
+            <label for="title">Title</label>
+            <input type="text" th:field="*{title}"/>
+            <br/>
+
+            <label for="auther">Auther</label>
+            <input type="text" th:field="*{auther}"/>
+            <br/>
+
+            <label for="description">Description</label>
+            <input type="text" th:field="*{description}"/>
+            <br/>
+
+            <div th:each="category : ${categoryList}">
+                <input type="checkbox" th:value="${category.name}"/><span th:text="${category.name}"/>
+                <br/>
+            </div>
+
+            <label for="publicationYear">Publication year</label>
+            <input type="text" th:field="*{publicationYear}"/>
+            <br/>
+
+            <label for="webLink">Web link</label>
+            <input type="text" th:field="*{webLink}"/>
+            <br/>
+
         </div>
-        <input type="submit" name="save"/>
+        <input type="submit" value="Save"/>
     </form>
 </body>
 </html>

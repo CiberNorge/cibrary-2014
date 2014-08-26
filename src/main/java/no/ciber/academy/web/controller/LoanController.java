@@ -42,7 +42,7 @@ public class LoanController {
             }
         }
         loanRepository.save(new Loan(book));
-        redirect.addFlashAttribute("globalMessage", String.format("A loan of '%s' is now registered on you", book.getName()));
+        redirect.addFlashAttribute("globalMessage", String.format("A loan of '%s' is now registered on you", book.getTitle()));
         return "redirect:/";
     }
 }

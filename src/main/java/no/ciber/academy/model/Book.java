@@ -15,9 +15,8 @@ public class Book implements Serializable {
     @Id
     private String isbn;
 
-    private String name, description, pictureAddress, webLink;
+    private String title, description, pictureAddress, webLink;
 
-    //@OneToMany(mappedBy = "auther", fetch = FetchType.EAGER)
     @ElementCollection
     private List<String> auther;
 
@@ -31,10 +30,10 @@ public class Book implements Serializable {
     public Book() {
     }
 
-    public Book(String isbn, String name, String description, String pictureAddress, String webLink,
+    public Book(String isbn, String title, String description, String pictureAddress, String webLink,
                 List<String> auther, int publicationYear, int numberOfCopies, List<Category> categories) {
         this.isbn = isbn;
-        this.name = name;
+        this.title = title;
         this.description = description;
         this.pictureAddress = pictureAddress;
         this.webLink = webLink;
@@ -52,12 +51,12 @@ public class Book implements Serializable {
         this.isbn = isbn;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {

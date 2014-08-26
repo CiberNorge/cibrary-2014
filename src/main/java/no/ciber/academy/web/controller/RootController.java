@@ -12,8 +12,8 @@ import java.util.List;
 @Controller
 public class RootController {
 
-    @Autowired
-    BookRepository bookRepository;
+    //@Autowired
+    //BookRepository bookRepository;
 
     @RequestMapping("/")
     public String index() {
@@ -22,7 +22,8 @@ public class RootController {
 
     @RequestMapping("/hello")
     public String hello(Model model) {
-        List<Book> books = bookRepository.findAll();
+        //List<Book> books = bookRepository.findAll();
+        //String message = (String)model.asMap().get("message");
         return "hello";
     }
 }
