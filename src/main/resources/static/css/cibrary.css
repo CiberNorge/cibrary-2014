@@ -5,3 +5,7 @@ input.field-error, textarea.field-error {
 .error-text {
     color: #B94A48;
 }
+
+.non-resizable {
+    resize: none;
+}
