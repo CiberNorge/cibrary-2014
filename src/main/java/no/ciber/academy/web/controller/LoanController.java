@@ -30,20 +30,20 @@ public class LoanController {
         List <Loan> loans = loanRepository.findAll();
         Book book = bookRepository.findOne(id);
         if(book == null) {
-            redirect.addFlashAttribute("globalMessage", "Could not find book");
-            return "redirect:/";
+            redirect.addFlashAttribute("globalMessageDanger", "Could not find book");
+            return "redirect:/books/allBooks";
         }
         int booksLoaned = 0;
         for(Loan loan : loans){
             if(loan.getBook().getIsbn() == book.getIsbn() && loan.getDeliveryDate() == null)
                 booksLoaned++;
             if(booksLoaned > book.getNumberOfCopies()) {
-                redirect.addFlashAttribute("globalMessage", "There are no available copies of this book");
-                return "redirect:/";
+                redirect.addFlashAttribute("globalMessageDanger", "There are no available copies of this book");
+                return "redirect:/books/allBooks";
             }
         }
         loanRepository.save(new Loan(book));
-        redirect.addFlashAttribute("globalMessage", String.format("A loan of '%s' is now registered on you", book.getTitle()));
-        return "redirect:/";
+        redirect.addFlashAttribute("globalMessageSuccess", String.format("A loan of '%s' is now registered on you", book.getTitle()));
+        return "redirect:/books/allBooks";
     }
 }
