@@ -1,57 +1,76 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="layout">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta title="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
     <link rel="stylesheet" th:href="@{/css/cibrary.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap-multiselect.css}"/>
+    <script src="//code.jquery.com/jquery-2.1.1.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script th:src="@{/js/bootstrap-multiselect.js}"></script>
+
+    <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#example27').multiselect({
+                        includeSelectAllOption: true
+                    });
+                });
+    </script>
 </head>
 <body class="container">
-    <h3 class="text-center"><span class="glyphicon glyphicon-plus"></span> Add a new book</h3>
 
-    <form id="addBookForm" th:action="@{/books/add}" th:object="${book}" action="#" method="post" role="form">
-        <div class="form-group">
-            <label for="isbn">ISBN</label>
-            <input type="text" th:field="*{isbn}" class="form-control"/>
-            <br/>
-        </div>
-        <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" th:field="*{title}" class="form-control"/>
-            <br/>
-        </div>
-        <div class="form-group">
-            <label for="auther">Auther</label>
-            <input type="text" th:field="*{auther}" class="form-control"/>
-            <br/>
-        </div>
-        <div class="form-group">
-            <label for="description">Description</label>
-            <textarea rows="5" cols="50" th:field="*{description}" class="form-control non-resizable"></textarea>
-            <br/>
-        </div>
-        <div class="form-group">
-            <label for="categories">Categories</label>
-            <div th:each="category : ${categoryList}">
-                <input type="checkbox" th:field="*{categories}" th:value="${category.name}"/>
-                <span th:text="${category.name}"> </span>
+    <div layout:fragment="content">
+        <h3 class="text-center"><span class="glyphicon glyphicon-plus"></span> Add a new book</h3>
+
+        <form id="addBookForm" th:action="@{/books/add}" th:object="${book}" action="#" method="post" role="form">
+            <div class="form-group">
+                <label for="isbn">ISBN</label>
+                <input type="text" th:field="*{isbn}" class="form-control"/>
+                <br/>
             </div>
-            <br/>
-        </div>
-        <div class="form-group">
-            <label for="publicationYear">Publication year</label>
-            <input type="text" th:field="*{publicationYear}" class="form-control"/>
-            <br/>
-        </div>
-        <div class="form-group">
-            <label for="webLink">Web link</label>
-            <input type="text" th:field="*{webLink}" class="form-control"/>
-            <br/>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Save" class="form-control btn btn-primary"/>
-        </div>
-    </form>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" th:field="*{title}" class="form-control"/>
+                <br/>
+            </div>
+            <div class="form-group">
+                <label for="auther">Author</label>
+                <input type="text" th:field="*{auther}" class="form-control"/>
+                <br/>
+            </div>
+            <div class="form-group">
+                <label for="publicationYear">Publication year</label>
+                <input type="text" th:field="*{publicationYear}" class="form-control"/>
+                <br/>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea rows="5" cols="50" th:field="*{description}" class="form-control non-resizable"></textarea>
+                <br/>
+            </div>
+            <div class="form-group">
+                <label for="categories">Categories</label>
+                <br/>
+                <select id="example27" th:field="*{categories}"  multiple="multiple">
+                        <option th:each="category : ${categoryList}"
+                                th:value="${category.name}"
+                                th:text="${category.name}">
+                        </option>
+                </select>
+                <br/>
+            </div>
+            <div class="form-group">
+                <label for="webLink">Web link</label>
+                <input type="text" th:field="*{webLink}" class="form-control"/>
+                <br/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="form-control btn btn-primary"/>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
