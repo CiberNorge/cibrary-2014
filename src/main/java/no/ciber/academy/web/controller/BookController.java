@@ -27,6 +27,21 @@ public class BookController {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @RequestMapping(value = "/allBooks", method = RequestMethod.GET)
+    public String showAll(Model model) {
+        Book book = new Book();
+        book.setIsbn("2");
+        book.setTitle("Boka mi");
+        bookRepository.save(book);
+        Book book2 = new Book();
+        book2.setIsbn("3");
+        book2.setTitle("Your book");
+        bookRepository.save(book2);
+
+        model.addAttribute("books", bookRepository.findAll());
+        return "books/allBooks";
+    }
+
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String showForm(Model model) {
         model.addAttribute("book", new Book());

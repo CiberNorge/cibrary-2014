@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<body>
+<h3>Test</h3>
+
+    <table>
+
+        <tr th:each="book : ${books}">
+            <td th:text="${book.isbn}"></td>
+            <td th:text="${book.title}"></td>
+            <td>
+                <form id="bookListForm" th:action="@{'/loanBook/' + ${book.isbn}}" method="post">
+                    <input type="submit" name="loan" value="Loan this book"/>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

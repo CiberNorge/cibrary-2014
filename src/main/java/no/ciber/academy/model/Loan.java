@@ -1,9 +1,6 @@
 package no.ciber.academy.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -16,6 +13,8 @@ public class Loan implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @ManyToOne
     private Book book;
     //private User user;
     private Calendar loanDate;
