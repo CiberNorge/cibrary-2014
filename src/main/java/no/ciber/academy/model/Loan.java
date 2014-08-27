@@ -39,4 +39,8 @@ public class Loan implements Serializable {
     public Book getBook(){
         return book;
     }
+
+    public Calendar getDeliveryDate(){
+        return deliveryDate;
+    }
 }

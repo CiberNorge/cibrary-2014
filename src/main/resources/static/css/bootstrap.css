@@ -259,6 +259,10 @@ th {
   .table-bordered td {
     border: 1px solid #ddd !important;
   }
+  .table-borderless th,
+  .table-borderless td {
+    border: none;
+  }
 }
 @font-face {
   font-family: 'Glyphicons Halflings';

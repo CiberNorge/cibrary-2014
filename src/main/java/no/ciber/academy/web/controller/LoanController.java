@@ -35,14 +35,13 @@ public class LoanController {
         }
         int booksLoaned = 0;
         for(Loan loan : loans){
-            if(loan.getBook().getIsbn() == book.getIsbn())
+            if(loan.getBook().getIsbn() == book.getIsbn() && loan.getDeliveryDate() == null)
                 booksLoaned++;
             if(booksLoaned > book.getNumberOfCopies()) {
                 redirect.addFlashAttribute("globalMessage", "There are no available copies of this book");
                 return "redirect:/";
             }
         }
-        System.out.println("Test");
         loanRepository.save(new Loan(book));
         redirect.addFlashAttribute("globalMessage", String.format("A loan of '%s' is now registered on you", book.getTitle()));
         return "redirect:/";
