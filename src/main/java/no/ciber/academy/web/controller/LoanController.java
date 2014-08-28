@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -104,11 +105,22 @@ public class LoanController {
         return "/loan/userLoan";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/myLoans/{id}")
-    public String deliverBook(@PathVariable String id, Model model) {
-        List <Loan> loans = loanRepository.findAll();
+    @RequestMapping(value = "/myLoans/{isbn}", method = RequestMethod.POST)
+    public String deliverBook(@PathVariable String isbn, RedirectAttributes redirect) {
+        List <Loan> loans = loanRepository.findByBookIsbn(isbn);
+        boolean deliverd = false;
 
-        model.addAttribute("globalMessageSuccess", "A loan of '%s' is now registered on you");
-        return "redirect:/loan/userLoan";
+        if (!loans.isEmpty()) {
+            Loan loan = loans.get(0);
+            loan.setDeliveryDate(Calendar.getInstance());
+
+            redirect.addAttribute("globalMessageSuccess", "The book, " + loan.getBook().getTitle() + ", vas delivered");
+            deliverd = true;
+        }
+
+        if (!deliverd)
+            redirect.addAttribute("globalMessageDanger", "Could not find the book");
+
+        return "redirect:/myLoans";
     }
 }

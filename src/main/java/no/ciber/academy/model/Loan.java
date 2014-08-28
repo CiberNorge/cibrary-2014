@@ -44,4 +44,8 @@ public class Loan implements Serializable {
     public Calendar getDeliveryDate(){
         return deliveryDate;
     }
+
+    public void setDeliveryDate(Calendar deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
 }

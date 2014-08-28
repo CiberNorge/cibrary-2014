@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta title="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap-multiselect.css}"/>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script th:src="@{/js/bootstrap-multiselect.js}"></script>
 
     <script type="text/javascript">
@@ -28,7 +27,7 @@
 <body class="container">
 
 <div layout:fragment="content">
-    <h3 class="text-center"><span class="glyphicon glyphicon-plus"></span> Add a new book</h3>
+    <h3 class="text-center">Add a new book</h3>
 
     <div th:if="${book.isbn == null}">
         <form id="lookupIsbnForm" th:action="@{/books/lookupIsbn}" th:object="${book}" action="#" method="post"
