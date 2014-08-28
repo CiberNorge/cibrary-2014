@@ -52,7 +52,7 @@
         <div class="row bookInfoText" th:each="book : ${books}">
             <hr/>
             <div class="col-xs-3">
-                <img class="img-responsive" src="http://www.graphicsfuel.com/wp-content/uploads/2012/07/red-book.png"/>
+                <img class="img-responsive" th:src="${book.pictureAddress}"/>
             </div>
             <div class="col-xs-7 bookInfoText">
                 <h4 th:text="${book.title}"></h4>

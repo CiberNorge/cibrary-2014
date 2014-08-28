@@ -44,6 +44,7 @@ public class BookController {
         book.setCategories(categoryJava);
         book.setPublicationYear(2014);
         book.setBooksLoaned(0);
+        book.setPictureAddress("http://4.bp.blogspot.com/-1T9VVGRzWr8/UmmJQjfk_mI/AAAAAAAAA18/9pTGurDTSZ0/s1600/61PHf2uL6vL._SL1093_.jpg");
         bookRepository.save(book);
         Book book2 = new Book();
         book2.setIsbn("3");
@@ -54,6 +55,7 @@ public class BookController {
         book2.setPublicationYear(2014);
         book2.setCategories(categoryCpp);
         book2.setBooksLoaned(0);
+        book2.setPictureAddress("http://www.coins-lab.org/imamu/akoubaa/cs140/textbooks/ccpfordummies.JPG");
         bookRepository.save(book2);
     }
 
@@ -78,14 +80,16 @@ public class BookController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addBook(Book book, Model model) {
+    public String addBook(Book book, Model model, RedirectAttributes redirect) {
 
         bookRepository.save(book);
         model.addAttribute("book", book);
-        //redirect.addFlashAttribute("message", String.format("Success '%s.", book.getTitle()));
-        model.addAttribute("globalMessageSuccess", "Success adding book " + book.getTitle());
+
+        redirect.addFlashAttribute("globalMessageSuccess", "Success adding book " + book.getTitle());
         addCategoriesToModel(model);
-        return "books/addBook";
+
+        return "redirect:/books/allBooks";
+        //return "books/addBook";
     }
 
     @RequestMapping(value = "/lookupIsbn", method = RequestMethod.POST)

@@ -30,10 +30,6 @@
 <div layout:fragment="content">
     <h3 class="text-center"><span class="glyphicon glyphicon-plus"></span> Add a new book</h3>
 
-    <div th:if="${globalMessageSuccess}" layout:fragment="globalMessageSuccess" class="alert alert-success">
-        <span th:text="${globalMessageSuccess}"></span>
-    </div>
-
     <div th:if="${book.isbn == null}">
         <form id="lookupIsbnForm" th:action="@{/books/lookupIsbn}" th:object="${book}" action="#" method="post"
               role="form">
@@ -58,9 +54,9 @@
             <div class="form-group">
                 <label for="numberOfCopies">Total number of copies</label>
                 <br/>
-                <button id="decreaseNumberOfCopies" class="btn btn-default glyphicon glyphicon-minus"></button>
+                <button type="button" id="decreaseNumberOfCopies" class="btn btn-default glyphicon glyphicon-minus"></button>
                 <input type="number" th:field="*{numberOfCopies}" class="cibrary-form-control"/>
-                <button id="increaseNumberOfCopies" class="btn btn-default glyphicon glyphicon-plus"></button>
+                <button type="button" id="increaseNumberOfCopies" class="btn btn-default glyphicon glyphicon-plus"></button>
                 <br/>
             </div>
             <div class="form-group">
