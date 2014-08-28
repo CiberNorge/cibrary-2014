@@ -27,7 +27,7 @@ public class LoanController {
     @Autowired
     BookRepository bookRepository;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/loanBook/{id}")
+   /* @RequestMapping(method = RequestMethod.POST, value = "/loanBook/{id}")
      public String loanBook(@PathVariable String id, RedirectAttributes redirect) {
         List <Loan> loans = loanRepository.findAll();
         Book book = bookRepository.findOne(id);
@@ -66,6 +66,28 @@ public class LoanController {
         loanRepository.save(new Loan(book));
         redirect.addFlashAttribute("globalMessageSuccess", String.format("A loan of '%s' is now registered on you", book.getTitle()));
         return "redirect:/books/allBooks";
+    }*/
+
+    @RequestMapping(method = RequestMethod.POST, value = "/loanBook/{id}")
+    public String loanBook(@PathVariable String id, RedirectAttributes redirect) {
+        List <Loan> loans = loanRepository.findAll();
+        Book book = bookRepository.findOne(id);
+        if(book == null) {
+            redirect.addFlashAttribute("globalMessageDanger", "Could not find book");
+            return "redirect:/books/allBooks";
+        }
+
+        if(book.getNumberOfCopies() > book.getBooksLoaned()){
+            book.setBooksLoaned(book.getBooksLoaned() + 1);
+            loanRepository.save(new Loan(book));
+            redirect.addFlashAttribute("globalMessageSuccess", String.format("A loan of '%s' is now registered on you", book.getTitle()));
+            return "redirect:/books/allBooks";
+        }
+
+        else {
+            redirect.addFlashAttribute("globalMessageDanger", "There are no available copies of this book");
+            return "redirect:/books/allBooks";
+        }
     }
 
     @RequestMapping(value = "/myLoans", method = RequestMethod.GET)

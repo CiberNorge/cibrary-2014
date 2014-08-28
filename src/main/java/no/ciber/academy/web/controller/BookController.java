@@ -43,7 +43,8 @@ public class BookController {
         book.setDescription("The best book ever!");
         book.setCategories(categoryJava);
         book.setPublicationYear(2014);
-        book.setAvailable(true);
+        book.setBooksLoaned(0);
+        book.setPictureAddress("http://4.bp.blogspot.com/-1T9VVGRzWr8/UmmJQjfk_mI/AAAAAAAAA18/9pTGurDTSZ0/s1600/61PHf2uL6vL._SL1093_.jpg");
         bookRepository.save(book);
         Book book2 = new Book();
         book2.setIsbn("3");
@@ -53,7 +54,8 @@ public class BookController {
         book2.setDescription("There are two kinds of horror films. bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla");
         book2.setPublicationYear(2014);
         book2.setCategories(categoryCpp);
-        book2.setAvailable(true);
+        book2.setBooksLoaned(0);
+        book2.setPictureAddress("http://www.coins-lab.org/imamu/akoubaa/cs140/textbooks/ccpfordummies.JPG");
         bookRepository.save(book2);
     }
 

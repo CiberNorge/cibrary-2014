@@ -52,7 +52,7 @@
         <div class="row bookInfoText" th:each="book : ${books}">
             <hr/>
             <div class="col-xs-3">
-                <img class="img-responsive" src="http://www.graphicsfuel.com/wp-content/uploads/2012/07/red-book.png"/>
+                <img class="img-responsive" th:src="${book.pictureAddress}"/>
             </div>
             <div class="col-xs-7 bookInfoText">
                 <h4 th:text="${book.title}"></h4>
@@ -62,9 +62,9 @@
             </div>
             <div class="col-xs-2 pull-right">
                 <form id="bookListForm" th:action="@{'/loanBook/' + ${book.isbn}}" method="post">
-                    <div th:switch="${book.isAvailable}">
-                        <input th:case="true" class="btn btn-success" type="submit" name="loan" value="Loan"/>
-                        <input th:case="false" disabled="disabled" class="btn btn-success" type="submit" name="loan" value="Loan"/>
+                    <div th:switch="${book.booksLoaned == book.numberOfCopies}">
+                        <input th:case="false" class="btn btn-success" type="submit" name="loan" value="Loan"/>
+                        <input th:case="true" disabled="disabled" class="btn btn-success" type="submit" name="loan" value="Loan"/>
                     </div>
                    <!-- <input class="btn btn-success" type="submit" name="loan" value="Loan"/> -->
                 </form>
