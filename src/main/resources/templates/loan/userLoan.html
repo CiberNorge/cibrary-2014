@@ -10,17 +10,17 @@
 <div layout:fragment="content">
     <h3 class="text-center">My books</h3>
     <div class="col-xs-10">
-        <div th:if="${globalMessageSuccess}" layout:fragment="globalMessageSuccess" class="alert alert-success">
+        <div th:if="${globalMessageSuccess}"  class="alert alert-success">
             <span th:text="${globalMessageSuccess}"></span>
         </div>
-        <div th:if="${globalMessageDanger}" layout:fragment="globalMessageDanger" class="alert alert-danger">
+        <div th:if="${globalMessageDanger}" class="alert alert-danger">
             <span th:text="${globalMessageDanger}"></span>
         </div>
     </div>
     <div class="row bookInfoText" th:each="book : ${books}">
         <hr/>
         <div class="col-xs-3">
-            <img class="img-responsive" th:src="${book.pictureAddress}"/>
+            <img class="img-responsive" th:src="${book.pictureAddress}" width="150"/>
         </div>
         <div class="col-xs-7 bookInfoText">
             <h4 th:text="${book.title}"></h4>
@@ -29,11 +29,11 @@
             <p class="hideOverflow" th:text="${book.description}"></p>
             <br/>
             <br/>
-            <h4>Antall: 3</h4>
+            <h4>Antall: <span th:text="${book.loans.size()}"></span></h4>
         </div>
         <div class="col-xs-2 pull-right">
             <form id="loanListForm" th:action="@{'/myLoans/' + ${book.isbn}}" method="post">
-                <input class="btn btn-success" type="submit" name="deliver" value="Deliver"/>
+                <input class="btn btn-success" type="submit" name="return" value="Return"/>
             </form>
             <br/>
             <button class="btn btn-primary">More</button>

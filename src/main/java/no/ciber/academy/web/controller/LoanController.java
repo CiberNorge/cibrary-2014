@@ -51,13 +51,14 @@ public class LoanController {
 
     @RequestMapping(value = "/myLoans", method = RequestMethod.GET)
     public String seeMyLoans( Model model) {
-        List<Loan> loans = loanRepository.findAll();
-        List<String> isbns = new ArrayList<String>();
-        for (Loan loan : loans) {
-            isbns.add(loan.getBook().getIsbn());
+        List <Book> books = bookRepository.findAll();
+
+        for (int i = books.size() - 1; i >= 0; i--) {
+            Book book = books.get(i);
+            if (book.getLoans().size() < 1)
+                books.remove(i);
         }
 
-        List<Book> books = bookRepository.findAll(isbns);
         model.addAttribute("books", books);
 
         return "/loan/userLoan";
@@ -69,15 +70,20 @@ public class LoanController {
         boolean deliverd = false;
 
         if (!loans.isEmpty()) {
-            Loan loan = loans.get(0);
-            loan.setDeliveryDate(Calendar.getInstance());
+            int i = 0;
+            Loan loan = loans.get(i);
 
-            redirect.addAttribute("globalMessageSuccess", "The book, " + loan.getBook().getTitle() + ", vas delivered");
+            while (loan.getDeliveryDate() != null) loan = loans.get(++i);
+
+            loan.setDeliveryDate(Calendar.getInstance());
+            loanRepository.save(loan);
+
+            redirect.addFlashAttribute("globalMessageSuccess",  "Success! Your book is now returned.");
             deliverd = true;
         }
 
         if (!deliverd)
-            redirect.addAttribute("globalMessageDanger", "Could not find the book");
+            redirect.addFlashAttribute("globalMessageDanger", "Could not find the book.");
 
         return "redirect:/myLoans";
     }
