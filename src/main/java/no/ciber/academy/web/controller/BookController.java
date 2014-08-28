@@ -77,7 +77,7 @@ public class BookController {
         bookRepository.save(book);
         model.addAttribute("book", book);
         //redirect.addFlashAttribute("message", String.format("Success '%s.", book.getTitle()));
-
+        model.addAttribute("globalMessageSuccess", "Success adding book " + book.getTitle());
         return "books/addBook";
     }
 
