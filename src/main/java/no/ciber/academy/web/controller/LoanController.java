@@ -25,50 +25,8 @@ public class LoanController {
     @Autowired
     BookRepository bookRepository;
 
-   /* @RequestMapping(method = RequestMethod.POST, value = "/loanBook/{id}")
-     public String loanBook(@PathVariable String id, RedirectAttributes redirect) {
-        List <Loan> loans = loanRepository.findAll();
-        Book book = bookRepository.findOne(id);
-        if(book == null) {
-            redirect.addFlashAttribute("globalMessageDanger", "Could not find book");
-            return "redirect:/books/allBooks";
-        }
-
-        if(loans.isEmpty() && book.getNumberOfCopies() > 0){
-            loanRepository.save(new Loan(book));
-            if(book.getNumberOfCopies() == 1) {
-                book.setAvailable(false);
-                bookRepository.save(book);
-            }
-            redirect.addFlashAttribute("globalMessageSuccess", String.format("A loan of '%s' is now registered on you", book.getTitle()));
-            return "redirect:/books/allBooks";
-        }
-
-        int booksLoaned = 1;
-
-        for(Loan loan : loans){
-            if(loan.getBook().getIsbn() == book.getIsbn() && loan.getDeliveryDate() == null)
-                booksLoaned++;
-        }
-        if(booksLoaned > book.getNumberOfCopies()) {
-            book.setAvailable(false);
-            bookRepository.save(book);
-            redirect.addFlashAttribute("globalMessageDanger", "There are no available copies of this book");
-            return "redirect:/books/allBooks";
-        }
-        else if(booksLoaned == book.getNumberOfCopies()){
-            book.setAvailable(false);
-            bookRepository.save(book);
-        }
-
-        loanRepository.save(new Loan(book));
-        redirect.addFlashAttribute("globalMessageSuccess", String.format("A loan of '%s' is now registered on you", book.getTitle()));
-        return "redirect:/books/allBooks";
-    }*/
-
     @RequestMapping(method = RequestMethod.POST, value = "/loanBook/{id}")
     public String loanBook(@PathVariable String id, RedirectAttributes redirect) {
-        List <Loan> loans = loanRepository.findAll();
         Book book = bookRepository.findOne(id);
         if(book == null) {
             redirect.addFlashAttribute("globalMessageDanger", "Could not find book");
