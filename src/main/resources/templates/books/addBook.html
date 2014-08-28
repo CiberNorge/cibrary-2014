@@ -5,10 +5,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta title="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
-    <link rel="stylesheet" th:href="@{/css/cibrary.css}"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap-multiselect.css}"/>
-    <script src="//code.jquery.com/jquery-2.1.1.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script th:src="@{/js/bootstrap-multiselect.js}"></script>
 
@@ -63,16 +60,15 @@
                 <br/>
             </div>
             <div class="form-group">
+                <label for="pictureAddress">Picture</label>
+                <input type = "text" th:field="*{pictureAddress}" class="form-control"/>
+                <br/>
+            </div>
+            <div class="form-group">
                 <label for="webLink">Web link</label>
                 <input type="text" th:field="*{webLink}" class="form-control"/>
                 <br/>
             </div>
-            <!--
-            <div class="form-group">
-                <label for="picture">Picture</label>
-                <input type = "file" th:field="*{picture}" class="form-control"/>
-                <br/>
-            </div>-->
             <div class="form-group">
                 <input type="submit" value="Save" class="form-control btn btn-primary"/>
             </div>
