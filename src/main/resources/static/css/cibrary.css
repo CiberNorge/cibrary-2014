@@ -15,3 +15,7 @@ input.field-error, textarea.field-error {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+#center-header {
+    text-align: center;
+}
