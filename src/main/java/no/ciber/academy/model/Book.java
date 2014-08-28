@@ -18,9 +18,14 @@ public class Book implements Serializable {
     @NotEmpty
     private String isbn;
 
-    private String title, description, pictureAddress, webLink, auther;
+    @Lob
+    private String description;
+
+    private String title, pictureAddress, webLink, auther;
 
     private int publicationYear, numberOfCopies = 1;
+
+    public boolean isAvailable;
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "book_category", joinColumns = { @JoinColumn(name = "isbn") },
@@ -41,6 +46,7 @@ public class Book implements Serializable {
         this.publicationYear = publicationYear;
         this.numberOfCopies = numberOfCopies;
         this.categories = categories;
+        isAvailable = true;
     }
 
     public String getIsbn() {
@@ -117,5 +123,13 @@ public class Book implements Serializable {
 
     public void increaseNumberOfCopies() {
         this.numberOfCopies++;
+    }
+
+    public void setAvailable(boolean available){
+        isAvailable = available;
+    }
+
+    public boolean isAvailable(){
+        return isAvailable;
     }
 }

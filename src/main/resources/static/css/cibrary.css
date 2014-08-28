@@ -2,6 +2,10 @@ input.field-error, textarea.field-error {
     border: 1px solid #B94A48;
 }
 
+body {
+    color: #777777;
+}
+
 .error-text {
     color: #B94A48;
 }
@@ -26,4 +30,10 @@ input.field-error, textarea.field-error {
     -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.hideOverflow  {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
