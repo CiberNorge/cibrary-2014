@@ -56,7 +56,7 @@ public class BookController {
         return "books/allBooks";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/lookupIsbn", method = RequestMethod.GET)
     public String showForm(Model model) {
         model.addAttribute("book", new Book());
 
@@ -67,12 +67,26 @@ public class BookController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addBook(Book book, BindingResult bindingResult, RedirectAttributes redirect) {
-        System.out.println(book.getCategories().get(0).getName());
+    public String addBook(Book book, Model model) {
+
         bookRepository.save(book);
+        model.addAttribute("book", book);
+        //redirect.addFlashAttribute("message", String.format("Success '%s.", book.getTitle()));
 
-        redirect.addFlashAttribute("message", String.format("Success")); //'%s.", book.getTitle()));
+        return "books/addBook";
+    }
 
-        return "redirect:/";
+    @RequestMapping(value = "/lookupIsbn", method = RequestMethod.POST)
+    public String addSearchForBook(Book book, Model model) {
+
+        Book bookFromDB = bookRepository.findOne(book.getIsbn());
+
+        if (bookFromDB != null) {
+            book = bookFromDB;
+        }
+
+        model.addAttribute("book", book);
+
+        return "books/addBook";
     }
 }

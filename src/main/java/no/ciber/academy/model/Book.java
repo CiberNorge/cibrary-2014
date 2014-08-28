@@ -20,7 +20,7 @@ public class Book implements Serializable {
 
     private String title, description, pictureAddress, webLink, auther;
 
-    private int publicationYear, numberOfCopies;
+    private int publicationYear, numberOfCopies = 1;
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "book_category", joinColumns = { @JoinColumn(name = "isbn") },
@@ -113,5 +113,9 @@ public class Book implements Serializable {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public void increaseNumberOfCopies() {
+        this.numberOfCopies++;
     }
 }
