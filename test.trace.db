@@ -1,0 +1,9 @@
+08-28 11:25:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "BOOK_CATEGORY" not found; SQL statement:
+alter table book_category drop constraint FK_kmcfei3s8i6jihi1556kh6dhx if exists [42102-176]
+08-28 11:25:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "BOOK_CATEGORY" not found; SQL statement:
+alter table book_category drop constraint FK_i4bud64x2c9gv0v4cxj8pm2h4 if exists [42102-176]
+08-28 11:25:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "LOAN" not found; SQL statement:
+alter table loan drop constraint FK_g34ow1yenc99ei904429e9e89 if exists [42102-176]
