@@ -9,3 +9,9 @@ input.field-error, textarea.field-error {
 .non-resizable {
     resize: none;
 }
+
+.hideOverflow {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

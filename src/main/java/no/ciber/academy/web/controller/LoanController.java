@@ -37,7 +37,7 @@ public class LoanController {
         for(Loan loan : loans){
             if(loan.getBook().getIsbn() == book.getIsbn() && loan.getDeliveryDate() == null)
                 booksLoaned++;
-            if(booksLoaned > book.getNumberOfCopies()) {
+            if(booksLoaned >= book.getNumberOfCopies()) {
                 redirect.addFlashAttribute("globalMessageDanger", "There are no available copies of this book");
                 return "redirect:/books/allBooks";
             }

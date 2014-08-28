@@ -18,7 +18,10 @@ public class Book implements Serializable {
     @NotEmpty
     private String isbn;
 
-    private String title, description, pictureAddress, webLink, auther;
+    @Lob
+    private String description;
+
+    private String title, pictureAddress, webLink, auther;
 
     private int publicationYear, numberOfCopies;
 

@@ -36,6 +36,7 @@ public class BookController {
         categoryJava.add(new Category("A"));
         categoryCpp.add(new Category("Z"));
         Book book = new Book();
+        book.setNumberOfCopies(2);
         book.setIsbn("2");
         book.setTitle("Boka mi");
         book.setAuther("Jesper och Magnus");
@@ -47,7 +48,7 @@ public class BookController {
         book2.setIsbn("3");
         book2.setTitle("Your book");
         book2.setAuther("Jesper och Magnus");
-        book2.setDescription("The best book ever!");
+        book2.setDescription("There are two kinds of horror films. bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla");
         book2.setPublicationYear(2014);
         book2.setCategories(categoryCpp);
         bookRepository.save(book2);
