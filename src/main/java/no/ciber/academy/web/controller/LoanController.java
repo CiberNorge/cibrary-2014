@@ -38,6 +38,8 @@ public class LoanController {
             if(loan.getBook().getIsbn() == book.getIsbn() && loan.getDeliveryDate() == null)
                 booksLoaned++;
             if(booksLoaned >= book.getNumberOfCopies()) {
+                book.setAvailable(false);
+                bookRepository.save(book);
                 redirect.addFlashAttribute("globalMessageDanger", "There are no available copies of this book");
                 return "redirect:/books/allBooks";
             }

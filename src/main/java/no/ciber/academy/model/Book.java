@@ -25,6 +25,8 @@ public class Book implements Serializable {
 
     private int publicationYear, numberOfCopies;
 
+    public boolean isAvailable;
+
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "book_category", joinColumns = { @JoinColumn(name = "isbn") },
             inverseJoinColumns = { @JoinColumn(name = "name") })
@@ -44,6 +46,7 @@ public class Book implements Serializable {
         this.publicationYear = publicationYear;
         this.numberOfCopies = numberOfCopies;
         this.categories = categories;
+        isAvailable = true;
     }
 
     public String getIsbn() {
@@ -116,5 +119,13 @@ public class Book implements Serializable {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public void setAvailable(boolean available){
+        isAvailable = available;
+    }
+
+    public boolean isAvailable(){
+        return isAvailable;
     }
 }

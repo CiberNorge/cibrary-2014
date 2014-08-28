@@ -23,26 +23,27 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
-    @Autowired
     private BookRepository bookRepository;
-
-    @Autowired
     private CategoryRepository categoryRepository;
 
-    @RequestMapping(value = "/allBooks", method = RequestMethod.GET)
-    public String showAll(Model model) {
+    @Autowired
+    public BookController(BookRepository bookRepository, CategoryRepository categoryRepository) {
+        this.bookRepository = bookRepository;
+        this.categoryRepository = categoryRepository;
+
         List<Category> categoryJava = new ArrayList<Category>();
         List<Category> categoryCpp = new ArrayList<Category>();
         categoryJava.add(new Category("A"));
         categoryCpp.add(new Category("Z"));
         Book book = new Book();
-        book.setNumberOfCopies(2);
+        book.setNumberOfCopies(1);
         book.setIsbn("2");
         book.setTitle("Boka mi");
         book.setAuther("Jesper och Magnus");
         book.setDescription("The best book ever!");
         book.setCategories(categoryJava);
         book.setPublicationYear(2014);
+        book.setAvailable(true);
         bookRepository.save(book);
         Book book2 = new Book();
         book2.setIsbn("3");
@@ -52,7 +53,10 @@ public class BookController {
         book2.setPublicationYear(2014);
         book2.setCategories(categoryCpp);
         bookRepository.save(book2);
+    }
 
+    @RequestMapping(value = "/allBooks", method = RequestMethod.GET)
+    public String showAll(Model model) {
         model.addAttribute("books", bookRepository.findAll(new Sort(Sort.Direction.ASC, "categories")));
         return "books/allBooks";
     }

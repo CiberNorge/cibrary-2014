@@ -62,7 +62,11 @@
             </div>
             <div class="col-xs-2 pull-right">
                 <form id="bookListForm" th:action="@{'/loanBook/' + ${book.isbn}}" method="post">
-                    <input class="btn btn-success" type="submit" name="loan" value="Loan"/>
+                    <div th:switch="${book.isAvailable}">
+                        <input th:case="true" class="btn btn-success" type="submit" name="loan" value="Loan"/>
+                        <input th:case="false" disabled="disabled" class="btn btn-success" type="submit" name="loan" value="Loan"/>
+                    </div>
+                   <!-- <input class="btn btn-success" type="submit" name="loan" value="Loan"/> -->
                 </form>
                 <br/>
                 <button class="btn btn-primary">More</button>
