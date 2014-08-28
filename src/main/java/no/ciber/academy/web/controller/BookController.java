@@ -78,14 +78,16 @@ public class BookController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addBook(Book book, Model model) {
+    public String addBook(Book book, Model model, RedirectAttributes redirect) {
 
         bookRepository.save(book);
         model.addAttribute("book", book);
-        //redirect.addFlashAttribute("message", String.format("Success '%s.", book.getTitle()));
-        model.addAttribute("globalMessageSuccess", "Success adding book " + book.getTitle());
+
+        redirect.addFlashAttribute("globalMessageSuccess", "Success adding book " + book.getTitle());
         addCategoriesToModel(model);
-        return "books/addBook";
+
+        return "redirect:/books/allBooks";
+        //return "books/addBook";
     }
 
     @RequestMapping(value = "/lookupIsbn", method = RequestMethod.POST)
