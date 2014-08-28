@@ -14,18 +14,53 @@
                     $('#makeMultiplechoiceDropdown').multiselect({
                         includeSelectAllOption: true
                     });
+
+                    $('#increaseNumberOfCopies').click(function() {
+                        $('#numberOfCopies').val(+$('#numberOfCopies').val() + 1)
+                    });
+
+                    $('#decreaseNumberOfCopies').click(function() {
+                        $('#numberOfCopies').val(+$('#numberOfCopies').val() - 1)
+                    });
                 });
     </script>
 </head>
 <body class="container">
 
-    <div layout:fragment="content">
-        <h3 class="text-center"><span class="glyphicon glyphicon-plus"></span> Add a new book</h3>
+<div layout:fragment="content">
+    <h3 class="text-center"><span class="glyphicon glyphicon-plus"></span> Add a new book</h3>
 
+    <div th:if="${globalMessageSuccess}" layout:fragment="globalMessageSuccess" class="alert alert-success">
+        <span th:text="${globalMessageSuccess}"></span>
+    </div>
+
+    <div th:if="${book.isbn == null}">
+        <form id="lookupIsbnForm" th:action="@{/books/lookupIsbn}" th:object="${book}" action="#" method="post"
+              role="form">
+            <div class="form-group">
+                <label for="isbn">ISBN</label>
+                <input type="text" th:field="*{isbn}" class="form-control"/>
+                <br/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Next" class="form-control btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+
+    <div th:if="${book.isbn != null}">
         <form id="addBookForm" th:action="@{/books/add}" th:object="${book}" action="#" method="post" role="form">
             <div class="form-group">
                 <label for="isbn">ISBN</label>
                 <input type="text" th:field="*{isbn}" class="form-control"/>
+                <br/>
+            </div>
+            <div class="form-group">
+                <label for="numberOfCopies">Total number of copies</label>
+                <br/>
+                <button id="decreaseNumberOfCopies" class="btn btn-default glyphicon glyphicon-minus"></button>
+                <input type="number" th:field="*{numberOfCopies}" class="cibrary-form-control"/>
+                <button id="increaseNumberOfCopies" class="btn btn-default glyphicon glyphicon-plus"></button>
                 <br/>
             </div>
             <div class="form-group">
@@ -51,17 +86,17 @@
             <div class="form-group">
                 <label for="categories">Categories</label>
                 <br/>
-                <select id="makeMultiplechoiceDropdown" th:field="*{categories}"  multiple="multiple">
-                        <option th:each="category : ${categoryList}"
-                                th:value="${category.name}"
-                                th:text="${category.name}">
-                        </option>
+                <select id="makeMultiplechoiceDropdown" th:field="*{categories}" multiple="multiple">
+                    <option th:each="category : ${categoryList}"
+                            th:value="${category.name}"
+                            th:text="${category.name}">
+                    </option>
                 </select>
                 <br/>
             </div>
             <div class="form-group">
-                <label for="pictureAddress">Picture</label>
-                <input type = "text" th:field="*{pictureAddress}" class="form-control"/>
+                <label for="pictureAddress">Link to picture</label>
+                <input type="text" th:field="*{pictureAddress}" class="form-control"/>
                 <br/>
             </div>
             <div class="form-group">
@@ -74,5 +109,6 @@
             </div>
         </form>
     </div>
+</div>
 </body>
 </html>

@@ -23,7 +23,7 @@ public class Book implements Serializable {
 
     private String title, pictureAddress, webLink, auther;
 
-    private int publicationYear, numberOfCopies;
+    private int publicationYear, numberOfCopies = 1;
 
     public boolean isAvailable;
 
@@ -119,6 +119,10 @@ public class Book implements Serializable {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public void increaseNumberOfCopies() {
+        this.numberOfCopies++;
     }
 
     public void setAvailable(boolean available){
