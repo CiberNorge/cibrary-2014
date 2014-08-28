@@ -10,6 +10,10 @@ body {
     color: #B94A48;
 }
 
+.navbar-default .navbar-brand-ciber{
+    color:#551A8B;
+}
+
 .non-resizable {
     resize: none;
 }
