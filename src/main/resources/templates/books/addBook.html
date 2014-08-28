@@ -14,7 +14,7 @@
 
     <script type="text/javascript">
                 $(document).ready(function() {
-                    $('#example27').multiselect({
+                    $('#makeMultiplechoiceDropdown').multiselect({
                         includeSelectAllOption: true
                     });
                 });
@@ -54,7 +54,7 @@
             <div class="form-group">
                 <label for="categories">Categories</label>
                 <br/>
-                <select id="example27" th:field="*{categories}"  multiple="multiple">
+                <select id="makeMultiplechoiceDropdown" th:field="*{categories}"  multiple="multiple">
                         <option th:each="category : ${categoryList}"
                                 th:value="${category.name}"
                                 th:text="${category.name}">
@@ -67,6 +67,12 @@
                 <input type="text" th:field="*{webLink}" class="form-control"/>
                 <br/>
             </div>
+            <!--
+            <div class="form-group">
+                <label for="picture">Picture</label>
+                <input type = "file" th:field="*{picture}" class="form-control"/>
+                <br/>
+            </div>-->
             <div class="form-group">
                 <input type="submit" value="Save" class="form-control btn btn-primary"/>
             </div>

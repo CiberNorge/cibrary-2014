@@ -9,3 +9,7 @@ input.field-error, textarea.field-error {
 .non-resizable {
     resize: none;
 }
+
+#center-header {
+    text-align: center;
+}
