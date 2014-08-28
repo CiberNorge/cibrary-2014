@@ -65,10 +65,14 @@ public class BookController {
     public String showForm(Model model) {
         model.addAttribute("book", new Book());
 
-        List<Category> categoryList = categoryRepository.findAll();
-        model.addAttribute("categoryList", categoryList);
+        addCategoriesToModel(model);
 
         return "books/addBook";
+    }
+
+    private void addCategoriesToModel(Model model) {
+        List<Category> categoryList = categoryRepository.findAll();
+        model.addAttribute("categoryList", categoryList);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -78,6 +82,7 @@ public class BookController {
         model.addAttribute("book", book);
         //redirect.addFlashAttribute("message", String.format("Success '%s.", book.getTitle()));
         model.addAttribute("globalMessageSuccess", "Success adding book " + book.getTitle());
+        addCategoriesToModel(model);
         return "books/addBook";
     }
 
@@ -91,6 +96,7 @@ public class BookController {
         }
 
         model.addAttribute("book", book);
+        addCategoriesToModel(model);
 
         return "books/addBook";
     }
