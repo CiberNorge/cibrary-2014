@@ -25,7 +25,11 @@ public class Book implements Serializable {
 
     private int publicationYear, numberOfCopies = 1;
 
-    public boolean isAvailable;
+    public int booksLoaned;
+
+    @OneToMany
+    @JoinColumn(name="isbn")
+    List<Loan> loans;
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "book_category", joinColumns = { @JoinColumn(name = "isbn") },
@@ -36,7 +40,7 @@ public class Book implements Serializable {
     }
 
     public Book(String isbn, String title, String description, String pictureAddress, String webLink,
-                String auther, int publicationYear, int numberOfCopies, List<Category> categories) {
+                String auther, int publicationYear, int numberOfCopies, List<Category> categories, int booksLoaned) {
         this.isbn = isbn;
         this.title = title;
         this.description = description;
@@ -46,7 +50,7 @@ public class Book implements Serializable {
         this.publicationYear = publicationYear;
         this.numberOfCopies = numberOfCopies;
         this.categories = categories;
-        isAvailable = true;
+        this.booksLoaned = booksLoaned;
     }
 
     public String getIsbn() {
@@ -125,11 +129,19 @@ public class Book implements Serializable {
         this.numberOfCopies++;
     }
 
-    public void setAvailable(boolean available){
-        isAvailable = available;
+    public void setBooksLoaned(int loaned){
+        booksLoaned = loaned;
     }
 
-    public boolean isAvailable(){
-        return isAvailable;
+    public int getBooksLoaned(){
+        return booksLoaned;
+    }
+
+    public List<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<Loan> loans) {
+        this.loans = loans;
     }
 }

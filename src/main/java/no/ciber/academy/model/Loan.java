@@ -15,6 +15,7 @@ public class Loan implements Serializable {
     private long id;
 
     @ManyToOne
+    @JoinColumn(name="isbn")
     private Book book;
     //private User user;
     private Calendar loanDate;
