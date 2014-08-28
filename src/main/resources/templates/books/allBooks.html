@@ -51,10 +51,10 @@
 
         <div class="row bookInfoText" th:each="book : ${books}">
             <hr/>
-            <div class="col-xs-3">
-                <img class="img-responsive" th:src="${book.pictureAddress}"/>
+            <div class="col-xs-2">
+                <img class="img-responsive" th:src="${book.pictureAddress}" width="150" />
             </div>
-            <div class="col-xs-7 bookInfoText">
+            <div class="col-xs-8 bookInfoText">
                 <h4 th:text="${book.title}"></h4>
                 <h4 th:text="${book.auther}"></h4>
                 <h4 th:text="${book.publicationYear}"></h4>
