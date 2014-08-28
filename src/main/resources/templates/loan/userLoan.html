@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html"
+        xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="layout">
+<head lang="en">
+    <meta charset="UTF-8"/>
+</head>
+<body class="container">
+
+<div layout:fragment="content">
+    <h3 class="text-center"><span class="glyphicon glyphicon-user"></span> My books</h3>
+    <div class="row bookInfoText" th:each="book : ${books}">
+        <hr/>
+        <div class="col-xs-3">
+            <img class="img-responsive" src="${book.pictureAddress}"/>
+        </div>
+        <div class="col-xs-7 bookInfoText">
+            <h4 th:text="${book.title}"></h4>
+            <h4 th:text="${book.auther}"></h4>
+            <h4 th:text="${book.publicationYear}"></h4>
+            <p class="hideOverflow" th:text="${book.description}"></p>
+        </div>
+        <div class="col-xs-2 pull-right">
+            <form id="bookListForm" th:action="@{'/myLoans/' + ${book.isbn}}" method="post">
+                <input class="btn btn-success" type="submit" name="deliver" value="Deliver"/>
+            </form>
+            <br/>
+            <button class="btn btn-primary">More</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

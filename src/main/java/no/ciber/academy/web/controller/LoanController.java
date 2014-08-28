@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -64,5 +66,27 @@ public class LoanController {
         loanRepository.save(new Loan(book));
         redirect.addFlashAttribute("globalMessageSuccess", String.format("A loan of '%s' is now registered on you", book.getTitle()));
         return "redirect:/books/allBooks";
+    }
+
+    @RequestMapping(value = "/myLoans", method = RequestMethod.GET)
+    public String seeMyLoans( Model model) {
+        List<Loan> loans = loanRepository.findAll();
+        List<String> isbns = new ArrayList<String>();
+        for (Loan loan : loans) {
+            isbns.add(loan.getBook().getIsbn());
+        }
+
+        List<Book> books = bookRepository.findAll(isbns);
+        model.addAttribute("books", books);
+
+        return "/loan/userLoan";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/myLoans/{id}")
+    public String deliverBook(@PathVariable String id, Model model) {
+        List <Loan> loans = loanRepository.findAll();
+
+        model.addAttribute("globalMessageSuccess", "A loan of '%s' is now registered on you");
+        return "redirect:/loan/userLoan";
     }
 }
