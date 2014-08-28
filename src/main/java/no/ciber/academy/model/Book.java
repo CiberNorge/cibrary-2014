@@ -1,6 +1,7 @@
 package no.ciber.academy.model;
 
 
+import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -28,7 +29,8 @@ public class Book implements Serializable {
     public int booksLoaned;
 
     @OneToMany
-    @JoinColumn(name="isbn")
+    @JoinColumn(name="isbn", updatable = false)
+    @Where(clause="delivery_date is null")
     List<Loan> loans;
 
     @ManyToMany(cascade = {CascadeType.ALL})
@@ -143,5 +145,9 @@ public class Book implements Serializable {
 
     public void setLoans(List<Loan> loans) {
         this.loans = loans;
+    }
+
+    public boolean isAvailable(){
+        return loans.size() < numberOfCopies;
     }
 }
