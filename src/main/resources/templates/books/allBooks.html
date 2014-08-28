@@ -49,16 +49,16 @@
             </div>
         </div>
 
-        <div class="row" th:each="book : ${books}">
+        <div class="row bookInfoText" th:each="book : ${books}">
             <hr/>
             <div class="col-xs-3">
                 <img class="img-responsive" src="http://www.graphicsfuel.com/wp-content/uploads/2012/07/red-book.png"/>
             </div>
-            <div id="bookInfo" class="col-xs-7">
+            <div class="col-xs-7 bookInfoText">
                 <h4 th:text="${book.title}"></h4>
                 <h4 th:text="${book.auther}"></h4>
                 <h4 th:text="${book.publicationYear}"></h4>
-                <span class="hideOverflow" th:text="${book.description}"></span>
+                <p class="hideOverflow" th:text="${book.description}"></p>
             </div>
             <div class="col-xs-2 pull-right">
                 <form id="bookListForm" th:action="@{'/loanBook/' + ${book.isbn}}" method="post">
