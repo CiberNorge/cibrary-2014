@@ -1,6 +1,9 @@
 package no.ciber.academy.model;
 
 
+import org.hibernate.search.annotations.Boost;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -12,13 +15,22 @@ import java.util.List;
  */
 @Entity
 @Table(name="book")
+@Indexed
 public class Book implements Serializable {
 
     @Id
     @NotEmpty
     private String isbn;
 
-    private String title, description, pictureAddress, webLink, auther;
+    @Field
+    @Boost(value = 1.5f)
+    private String title;
+
+    @Field
+    @Boost(value = 1.5f)
+    private String description;
+
+    private String pictureAddress, webLink, auther;
 
     private int publicationYear, numberOfCopies;
 

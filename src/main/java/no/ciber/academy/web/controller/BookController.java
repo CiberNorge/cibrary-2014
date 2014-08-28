@@ -4,6 +4,7 @@ import no.ciber.academy.model.Book;
 import no.ciber.academy.model.Category;
 import no.ciber.academy.repository.BookRepository;
 import no.ciber.academy.repository.CategoryRepository;
+import no.ciber.academy.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +28,9 @@ public class BookController {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private SearchService searchService;
+
     @RequestMapping(value = "/allBooks", method = RequestMethod.GET)
     public String showAll(Model model) {
         Book book = new Book();
@@ -42,6 +46,12 @@ public class BookController {
         return "books/allBooks";
     }
 
+    @RequestMapping(value = "/search")
+    public String search() {
+        List<Book> jorn = searchService.search("jorn");
+        return null;
+    }
+
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String showForm(Model model) {
         model.addAttribute("book", new Book());
@@ -54,7 +64,7 @@ public class BookController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addBook(Book book, BindingResult bindingResult, RedirectAttributes redirect) {
-        System.out.println(book.getCategories().get(0).getName());
+        //System.out.println(book.getCategories().get(0).getName());
         bookRepository.save(book);
 
         redirect.addFlashAttribute("message", String.format("Success")); //'%s.", book.getTitle()));
