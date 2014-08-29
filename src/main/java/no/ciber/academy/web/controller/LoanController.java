@@ -63,7 +63,7 @@ public class LoanController {
 
         model.addAttribute("books", books);
 
-        return "/loan/userLoan";
+        return "loan/userLoan";
     }
 
     @RequestMapping(value = "/myLoans/{isbn}", method = RequestMethod.POST)
