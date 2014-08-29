@@ -30,31 +30,6 @@ public class BookController {
     public BookController(BookRepository bookRepository, CategoryRepository categoryRepository) {
         this.bookRepository = bookRepository;
         this.categoryRepository = categoryRepository;
-
-        List<Category> categoryJava = new ArrayList<Category>();
-        List<Category> categoryCpp = new ArrayList<Category>();
-        categoryJava.add(new Category("A"));
-        categoryCpp.add(new Category("Z"));
-        Book book = new Book();
-        book.setNumberOfCopies(1);
-        book.setIsbn("2");
-        book.setTitle("Boka mi");
-        book.setAuther("Jesper och Magnus");
-        book.setDescription("The best book ever!");
-        book.setCategories(categoryJava);
-        book.setPublicationYear(2014);
-        book.setPictureAddress("http://4.bp.blogspot.com/-1T9VVGRzWr8/UmmJQjfk_mI/AAAAAAAAA18/9pTGurDTSZ0/s1600/61PHf2uL6vL._SL1093_.jpg");
-        bookRepository.save(book);
-        Book book2 = new Book();
-        book2.setIsbn("3");
-        book2.setNumberOfCopies(2);
-        book2.setTitle("Your book");
-        book2.setAuther("Jesper och Magnus");
-        book2.setDescription("There are two kinds of horror films. bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla");
-        book2.setPublicationYear(2014);
-        book2.setCategories(categoryCpp);
-        book2.setPictureAddress("http://www.coins-lab.org/imamu/akoubaa/cs140/textbooks/ccpfordummies.JPG");
-        bookRepository.save(book2);
     }
 
     @RequestMapping(value = "/allBooks", method = RequestMethod.GET)
