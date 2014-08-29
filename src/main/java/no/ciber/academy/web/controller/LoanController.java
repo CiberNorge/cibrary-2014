@@ -59,6 +59,8 @@ public class LoanController {
                 books.remove(i);
         }
 
+        if (books.isEmpty()) model.addAttribute("globalMessageInfo", "You have no loaned books.");
+
         model.addAttribute("books", books);
 
         return "/loan/userLoan";

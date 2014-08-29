@@ -9,12 +9,15 @@
 
 <div layout:fragment="content">
     <h3 class="text-center">My books</h3>
-    <div class="col-xs-10">
+    <div class="col-xs-12">
         <div th:if="${globalMessageSuccess}"  class="alert alert-success">
             <span th:text="${globalMessageSuccess}"></span>
         </div>
         <div th:if="${globalMessageDanger}" class="alert alert-danger">
             <span th:text="${globalMessageDanger}"></span>
+        </div>
+        <div th:if="${globalMessageInfo}"  class="alert alert-info">
+            <span th:text="${globalMessageInfo}"></span>
         </div>
     </div>
     <div class="row bookInfoText" th:each="book : ${books}">
