@@ -1,32 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="layout">
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/cibrary.css}"/>
+    <script>
+
+$(document).ready(function() {
+    $('.btn-collapse').click(function(e) {
+            e.preventDefault();
+            var $collapse = $(this).closest('.collapse-group').find('.collapse');
+            $collapse.collapse('toggle');
+            return false;
+    });
+
+    $('.pull-down').each(function() {
+        $(this).css('margin-top', $(this).parent().height()-$(this).height())
+    });
+});
+
+
+    </script>
 </head>
 <body>
 
-    <div class="container">
-        <div layout:fragment="content">
+<div class="container">
+    <div layout:fragment="content">
         <div class="row">
-            <form role="form">
-            <div class="col-xs-10">
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </div>
-                        <input class="form-control" type="text" placeholder="search"/>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-2">
-                <input class="btn" type="submit" name="search" value="Search"/>
-            </div>
-            </form>
-        </div>
-        <div class="row">
-            <div class="col-xs-10">
+            <div class="col-xs-12">
                 <div th:if="${globalMessageSuccess}" layout:fragment="globalMessageSuccess" class="alert alert-success">
                     <span th:text="${globalMessageSuccess}"></span>
                 </div>
@@ -34,9 +33,29 @@
                     <span th:text="${globalMessageDanger}"></span>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <form role="form">
+                <div>
+                    <div class="form-group col-sm-8">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </div>
+                            <input class="form-control" type="text" placeholder="search"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <input class="btn" type="submit" name="search" value="Search"/>
+                </div>
+
+            </form>
+
             <div class="col-xs-2">
                 <div class="btn-group">
-                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Sort<span class="caret"></span>
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Sort<span
+                            class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#">Author</a></li>
@@ -48,30 +67,37 @@
             </div>
         </div>
 
+
         <div class="row bookInfoText" th:each="book : ${books}">
             <hr/>
             <div class="col-xs-2">
-                <img class="img-responsive" th:src="${book.pictureAddress}" width="150" />
+                <img class="img-responsive" th:src="${book.pictureAddress}" width="150"/>
             </div>
             <div class="col-xs-8 bookInfoText">
                 <h4 th:text="${book.title}"></h4>
                 <h4 th:text="${book.auther}"></h4>
                 <h4 th:text="${book.publicationYear}"></h4>
-                <p class="hideOverflow" th:text="${book.description}"></p>
+
+                <div class="span4 collapse-group">
+                    <p class="collapse" th:text="${book.description}"></p>
+
+                    <p><a class="btn-collapse" href="#">View details &raquo;</a></p>
+                </div>
             </div>
-            <div class="col-xs-2 pull-right">
+            <div class="col-xs-2 pull-right pull-down">
                 <form id="bookListForm" th:action="@{'/loanBook/' + ${book.isbn}}" method="post">
                     <div th:switch="${book.available}">
                         <input th:case="true" class="btn btn-success" type="submit" name="loan" value="Loan"/>
-                        <input th:case="false" disabled="disabled" class="btn btn-success" type="submit" name="loan" value="Loan"/>
+                        <input th:case="false" disabled="disabled" class="btn btn-success" type="submit" name="loan"
+                               value="Loan"/>
                     </div>
-                   <!-- <input class="btn btn-success" type="submit" name="loan" value="Loan"/> -->
+                    <!-- <input class="btn btn-success" type="submit" name="loan" value="Loan"/> -->
                 </form>
                 <br/>
-                <button class="btn">More</button>
+
             </div>
         </div>
-        </div>
     </div>
+</div>
 </body>
 </html>

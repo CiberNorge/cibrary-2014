@@ -41,7 +41,6 @@ public class LoanController {
             redirect.addFlashAttribute("globalMessageSuccess", String.format("A loan of '%s' is now registered on you", book.getTitle()));
             return "redirect:/books/allBooks";
         }
-
         else {
             redirect.addFlashAttribute("globalMessageDanger", "There are no available copies of this book");
             return "redirect:/books/allBooks";
