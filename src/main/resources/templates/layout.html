@@ -8,37 +8,51 @@
 
     <script src="//code.jquery.com/jquery-2.1.1.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+
+$(document).ready(function() {
+    $('.pull-down').each(function() {
+        $(this).css('margin-top', $(this).parent().height()-$(this).height() - 20)
+    });
+});
+
+
+
+    </script>
 </head>
 <body class="container" style="width: 750px">
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div>
-                <a th:href="@{/books/allBooks}">
-                    <span class="navbar-brand-ciber navbar-brand"><b>cibrary</b></span>
-                </a>
-            </div>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div>
+            <a th:href="@{/books/allBooks}">
+                <span class="navbar-brand-ciber navbar-brand"><b>cibrary</b></span>
+            </a>
 
-            <div class="collapse navbar-collapse navbar-right" id="nav-menu">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown navbar-right">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Menu
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a th:href="@{/books/allBooks}">Cibrary</a></li>
-                            <li class="divider"></li>
-                            <li><a th:href="@{/myLoans}">My loans</a></li>
-                            <li class="divider"></li>
-                            <li><a th:href="@{/books/lookupIsbn}">Add a new book</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+            <span class="navbar-brand" layout:fragment="sub-header">???</span>
         </div>
-    </nav>
 
-    <div layout:fragment="content">
-        Fake content
+
+        <div class="collapse navbar-collapse navbar-right" id="nav-menu">
+            <ul class="nav navbar-nav">
+                <li class="dropdown navbar-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Menu
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a th:href="@{/books/allBooks}">Cibrary</a></li>
+                        <li class="divider"></li>
+                        <li><a th:href="@{/myLoans}">My loans</a></li>
+                        <li class="divider"></li>
+                        <li><a th:href="@{/books/lookupIsbn}">Add a new book</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
+</nav>
+
+<div layout:fragment="content">
+    Fake content
+</div>
 </body>
 </html>

@@ -45,3 +45,7 @@ body {
 .widthButton {
     width: 69px;
 }
+
+.button-shadow{
+    box-shadow: 0px 2px 0px #888888;
+}

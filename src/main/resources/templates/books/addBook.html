@@ -26,8 +26,11 @@
 </head>
 <body class="container">
 
+<span layout:fragment="sub-header">
+    Add a new book
+</span>
+
 <div layout:fragment="content">
-    <h3 class="text-center">Add a new book</h3>
 
     <div th:if="${book.isbn == null}">
         <form id="lookupIsbnForm" th:action="@{/books/lookupIsbn}" th:object="${book}" action="#" method="post"
@@ -38,7 +41,7 @@
                 <br/>
             </div>
             <div class="form-group">
-                <input type="submit" value="Next" class="form-control btn btn-primary"/>
+                <input type="submit" value="Next" class="form-control btn btn-primary button-shadow"/>
             </div>
         </form>
     </div>
@@ -53,9 +56,9 @@
             <div class="form-group">
                 <label for="numberOfCopies">Total number of copies</label>
                 <br/>
-                <button type="button" id="decreaseNumberOfCopies" class="btn btn-default glyphicon glyphicon-minus"></button>
+                <button type="button" id="decreaseNumberOfCopies" class="btn btn-default glyphicon glyphicon-minus button-shadow"></button>
                 <input type="number" th:field="*{numberOfCopies}" class="cibrary-form-control"/>
-                <button type="button" id="increaseNumberOfCopies" class="btn btn-default glyphicon glyphicon-plus"></button>
+                <button type="button" id="increaseNumberOfCopies" class="btn btn-default glyphicon glyphicon-plus button-shadow"></button>
                 <br/>
             </div>
             <div class="form-group">
@@ -100,7 +103,7 @@
                 <br/>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="form-control btn btn-primary"/>
+                <input type="submit" value="Save" class="form-control btn btn-primary button-shadow"/>
             </div>
         </form>
     </div>

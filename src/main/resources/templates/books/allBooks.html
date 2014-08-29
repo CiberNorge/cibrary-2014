@@ -11,16 +11,16 @@ $(document).ready(function() {
             $collapse.collapse('toggle');
             return false;
     });
-
-    $('.pull-down').each(function() {
-        $(this).css('margin-top', $(this).parent().height()-$(this).height())
-    });
 });
 
 
     </script>
 </head>
 <body>
+
+<span layout:fragment="sub-header">
+
+</span>
 
 <div class="container">
     <div layout:fragment="content">
@@ -47,14 +47,14 @@ $(document).ready(function() {
                     </div>
                 </div>
                 <div class="col-xs-2">
-                    <input class="btn" type="submit" name="search" value="Search"/>
+                    <input class="btn button-shadow" type="submit" name="search" value="Search"/>
                 </div>
 
             </form>
 
             <div class="col-xs-2">
                 <div class="btn-group">
-                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Sort<span
+                    <button type="button" class="btn dropdown-toggle button-shadow" data-toggle="dropdown">Sort<span
                             class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
@@ -87,8 +87,8 @@ $(document).ready(function() {
             <div class="col-xs-2 pull-right pull-down">
                 <form id="bookListForm" th:action="@{'/loanBook/' + ${book.isbn}}" method="post">
                     <div th:switch="${book.available}">
-                        <input th:case="true" class="btn btn-success" type="submit" name="loan" value="Loan"/>
-                        <input th:case="false" disabled="disabled" class="btn btn-success" type="submit" name="loan"
+                        <input th:case="true" class="btn btn-success button-shadow" type="submit" name="loan" value="Loan"/>
+                        <input th:case="false" disabled="disabled" class="btn btn-success button-shadow" type="submit" name="loan"
                                value="Loan"/>
                     </div>
                     <!-- <input class="btn btn-success" type="submit" name="loan" value="Loan"/> -->
