@@ -36,7 +36,7 @@
             <h5 th:text="${book.publicationYear}"></h5>
             <p class="hideOverflow" th:text="${book.description}"></p>
             <br/>
-            <h5>Antall: <span th:text="${book.loans.size()}"></span></h5>
+            <h5>Number of loaned copies: <span th:text="${book.loans.size()}"></span></h5>
         </div>
         <div class="col-xs-2 pull-right pull-down">
             <form id="loanListForm" th:action="@{'/myLoans/' + ${book.isbn}}" method="post">
