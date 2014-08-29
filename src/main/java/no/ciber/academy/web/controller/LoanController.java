@@ -36,8 +36,7 @@ public class LoanController {
             return "redirect:/books/allBooks";
         }
 
-        if(book.getNumberOfCopies() > book.getBooksLoaned()){
-            book.setBooksLoaned(book.getBooksLoaned() + 1);
+        if(book.getNumberOfCopies() > book.getLoans().size()){
             loanRepository.save(new Loan(book));
             redirect.addFlashAttribute("globalMessageSuccess", String.format("A loan of '%s' is now registered on you", book.getTitle()));
             return "redirect:/books/allBooks";
