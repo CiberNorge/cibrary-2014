@@ -34,7 +34,7 @@ public class BookController {
 
     @RequestMapping(value = "/allBooks", method = RequestMethod.GET)
     public String showAll(Model model) {
-        model.addAttribute("books", bookRepository.findAll(new Sort(Sort.Direction.ASC, "categories")));
+        model.addAttribute("books", bookRepository.findAll());
         return "books/allBooks";
     }
 
