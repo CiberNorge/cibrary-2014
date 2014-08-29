@@ -12,15 +12,17 @@
 </span>
 
 <div layout:fragment="content">
-    <div class="col-xs-12">
-        <div th:if="${globalMessageSuccess}"  class="alert alert-success">
-            <span th:text="${globalMessageSuccess}"></span>
-        </div>
-        <div th:if="${globalMessageDanger}" class="alert alert-danger">
-            <span th:text="${globalMessageDanger}"></span>
-        </div>
-        <div th:if="${globalMessageInfo}"  class="alert alert-info">
-            <span th:text="${globalMessageInfo}"></span>
+    <div class="row">
+        <div class="col-xs-12">
+            <div th:if="${globalMessageSuccess}"  class="alert alert-success">
+                <span th:text="${globalMessageSuccess}"></span>
+            </div>
+            <div th:if="${globalMessageDanger}" class="alert alert-danger">
+                <span th:text="${globalMessageDanger}"></span>
+            </div>
+            <div th:if="${globalMessageInfo}"  class="alert alert-info">
+                <span th:text="${globalMessageInfo}"></span>
+            </div>
         </div>
     </div>
     <div class="row bookInfoText" th:each="book : ${books}">
@@ -30,11 +32,11 @@
         </div>
         <div class="col-xs-7 bookInfoText">
             <h4 th:text="${book.title}"></h4>
-            <h4 th:text="${book.auther}"></h4>
-            <h4 th:text="${book.publicationYear}"></h4>
+            <h5 th:text="${book.auther}"></h5>
+            <h5 th:text="${book.publicationYear}"></h5>
             <p class="hideOverflow" th:text="${book.description}"></p>
             <br/>
-            <h4>Antall: <span th:text="${book.loans.size()}"></span></h4>
+            <h5>Antall: <span th:text="${book.loans.size()}"></span></h5>
         </div>
         <div class="col-xs-2 pull-right pull-down">
             <form id="loanListForm" th:action="@{'/myLoans/' + ${book.isbn}}" method="post">
